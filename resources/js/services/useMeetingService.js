@@ -66,12 +66,14 @@ export default function useMeetingService() {
         const locale = localStorage.getItem("locale");
         try {
             const response = await getMeetingByIdRequest(id);
-            console.log(response);
 
             documents.value = response?.documents.filter((doc) => {
                 return doc.locale === locale;
             });
-            meeting.value = response;
+            meeting.value = {
+                ...response,
+                name: locale === "uz" ? response.name_uz : response.name_en,
+            };
         } catch (e) {
             console.log(e);
         } finally {

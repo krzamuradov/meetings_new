@@ -19,5 +19,13 @@
                 "show": "Show"
             }
         }
+    },
+    "meetings_show": {
+        "back_to_list": "Back to the meetings list",
+        "meeting_name": "The name of the meeting",
+        "meeting_at": "Date of the meeting",
+        "list_title": "List of documents",
+        "table_col_name": "Name",
+        "table_col_action": "Action"
     }
 }

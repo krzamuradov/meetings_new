@@ -19,5 +19,13 @@
                 "show": "Ko'rish"
             }
         }
+    },
+    "meetings_show": {
+        "back_to_list": "Yig'ilishlar ro'yxatiga qaytish",
+        "meeting_name": "Nomi",
+        "meeting_at": "Sanasi",
+        "list_title": "Hujjatlar ro'yxati",
+        "table_col_name": "Nomi",
+        "table_col_action": "Amal"
     }
 }
