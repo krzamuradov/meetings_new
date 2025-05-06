@@ -1,0 +1,23 @@
+{
+    "login": {
+        "block_title": "Tizimga kirish",
+        "login": "Login",
+        "password": "Parol",
+        "button": "Kirish"
+    },
+    "navbar": {
+        "meetings": "Majlislar",
+        "sign_out": "Tizimdan chiqish"
+    },
+    "meetings": {
+        "new_meeting_btn": "Yangi majlis",
+        "table_cols": {
+            "name": "Nomi",
+            "meeting_at": "Sanasi",
+            "action": "Amal",
+            "link_titles": {
+                "show": "Ko'rish"
+            }
+        }
+    }
+}

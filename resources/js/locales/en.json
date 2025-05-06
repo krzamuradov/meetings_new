@@ -1,0 +1,23 @@
+{
+    "login": {
+        "block_title": "Sign In",
+        "login": "Login",
+        "password": "Password",
+        "button": "Sign In"
+    },
+    "navbar": {
+        "meetings": "Meetings",
+        "sign_out": "Sign Out"
+    },
+    "meetings": {
+        "new_meeting_btn": "New meeting",
+        "table_cols": {
+            "name": "Name",
+            "meeting_at": "Date",
+            "action": "Action",
+            "link_titles": {
+                "show": "Show"
+            }
+        }
+    }
+}
