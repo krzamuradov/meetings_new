@@ -4,7 +4,9 @@ import en from "@/locales/en.json";
 
 const i18n = createI18n({
     legacy: false,
-    locale: localStorage.getItem("locale"),
+    globalInjection: true,
+    locale: localStorage.getItem("locale") || "uz",
+    fallbackLocale: "uz",
     messages: {
         en,
         uz,
