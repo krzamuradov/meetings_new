@@ -1,6 +1,7 @@
 import { ref } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 import { can } from "@/services/permissions";
+import i18n from "@/services/i18n";
 
 const routes = [
     {
@@ -18,6 +19,10 @@ const routes = [
                         component: () => import("@/views/meetings/list.vue"),
                         meta: {
                             abilities: ["list-meetings"],
+                            title: {
+                                uz: "Barcha majlislar",
+                                en: "All meetings",
+                            },
                         },
                     },
                     {
@@ -26,6 +31,10 @@ const routes = [
                         component: () => import("@/views/meetings/create.vue"),
                         meta: {
                             abilities: ["create-meeting"],
+                            title: {
+                                uz: "Yangi majlis",
+                                en: "New meeting",
+                            },
                         },
                     },
                     {
@@ -34,6 +43,10 @@ const routes = [
                         component: () => import("@/views/meetings/show.vue"),
                         meta: {
                             abilities: ["show-meeting"],
+                            title: {
+                                uz: "Majlis",
+                                en: "Meeting",
+                            },
                         },
                     },
                     {
@@ -92,7 +105,13 @@ const routes = [
         path: "/login",
         name: "login",
         component: () => import("@/views/login.vue"),
-        meta: { requiresAuth: false },
+        meta: {
+            requiresAuth: false,
+            title: {
+                uz: "Tizimga kirish",
+                en: "Sign In",
+            },
+        },
     },
     {
         path: "/test",
@@ -118,9 +137,15 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from) => {
+    const locale = i18n.global.locale.value;
+
     const token = localStorage.getItem("token");
     const user = localStorage.getItem("user");
     const authorized = !!(token && user);
+
+    if (to.meta.title) {
+        document.title = locale === "uz" ? to.meta.title.uz : to.meta.title.en;
+    }
 
     if (to.meta.requiresAuth && !authorized) {
         return { name: "login" };

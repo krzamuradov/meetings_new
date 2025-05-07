@@ -35,7 +35,14 @@ class DatabaseSeeder extends Seeder
             'role_id' => 3
         ]);
 
+        User::factory()->create([
+            'firstname' => 'Alisher',
+            'lastname' => 'Fayzullayev',
+            'login' => 'a.fayzullayev',
+            'role_id' => 3
+        ]);
 
-        // $this->call(MeetingsSeeder::class);
+
+        $this->call(MeetingsSeeder::class);
     }
 }

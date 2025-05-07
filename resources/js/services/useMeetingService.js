@@ -53,7 +53,6 @@ export default function useMeetingService() {
                 name: localStorage.getItem("locale") === "uz" ? meeting?.name_uz : meeting?.name_en,
                 meeting_at: meeting.meeting_at_formatted,
             }));
-            console.log(meetings.value);
         } catch (e) {
             console.log(e);
         } finally {

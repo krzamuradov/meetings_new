@@ -5,8 +5,10 @@
     import useMeetingService from "@/services/useMeetingService";
     import Loading from "@/components/app/loading.vue";
     import Pagination from "@/components/app/pagination.vue";
+    import { useRouter } from "vue-router";
 
     const { meetings, loading, getAllMeetings } = useMeetingService();
+    const router = useRouter();
 
     const currentPage = ref(1);
     const perPage = 10;
@@ -16,6 +18,10 @@
         const start = (currentPage.value - 1) * perPage;
         return meetings.value.slice(start, start + perPage);
     });
+
+    const redirectToMeetingShow = (id) => {
+        router.push({ name: "meetingShow", params: { id: id } });
+    };
 
     onMounted(() => {
         getAllMeetings();
@@ -32,27 +38,25 @@
         <thead>
             <tr>
                 <th class="col-1">#</th>
-                <th class="col-5">{{ $t("meetings.table_cols.name") }}</th>
+                <th class="col-9">{{ $t("meetings.table_cols.name") }}</th>
                 <th class="col-4">{{ $t("meetings.table_cols.meeting_at") }}</th>
-                <th class="col-1">{{ $t("meetings.table_cols.action") }}</th>
+                <th class="col-1" v-if="can('create-meeting')">{{ $t("meetings.table_cols.action") }}</th>
                 <th class="col-1" v-if="can('create-meeting')">Hujjatlar</th>
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(meeting, i) in paginatedMeetings" :key="meeting.id">
+            <tr class="hover" v-for="(meeting, i) in paginatedMeetings" :key="meeting.id" @click="redirectToMeetingShow(meeting.id)">
                 <td class="col-1">{{ i + 1 }}</td>
                 <td class="col-5">{{ meeting.name }}</td>
                 <td class="col-4">{{ meeting.meeting_at }}</td>
                 <td class="col-2">
-                    <RouterLink class="btn" :to="{ name: 'meetingShow', params: { id: meeting.id } }" :title="$t('meetings.table_cols.link_titles.show')">
-                        <i class="fa fa-eye text-success"></i>
-                    </RouterLink>
-                    <RouterLink class="btn" :to="{ name: 'meetingEdit', params: { id: meeting.id } }" title="Редактировать" v-if="can('create-meeting')">
+                    <RouterLink @click.stop class="btn" :to="{ name: 'meetingEdit', params: { id: meeting.id } }" title="Редактировать" v-if="can('create-meeting')">
                         <i class="fa fa-edit text-primary"></i>
                     </RouterLink>
                 </td>
                 <td>
                     <RouterLink
+                        @click.stop
                         class="btn"
                         :to="{ name: 'documentCreate', query: { meeting_id: meeting.id } }"
                         title="Добавить документ к собранию"
@@ -64,9 +68,13 @@
             </tr>
         </tbody>
     </table>
-    <div class="d-flex justify-content-center align-items-center">
+    <div class="d-flex justify-content-start align-items-center">
         <Pagination v-model:currentPage="currentPage" :totalPages="totalPages" />
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+    .hover {
+        cursor: pointer;
+    }
+</style>
