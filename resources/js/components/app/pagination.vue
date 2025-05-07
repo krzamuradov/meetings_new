@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-    import { computed, defineProps, defineEmits } from "vue";
+    import { computed } from "vue";
 
     const props = defineProps({
         totalPages: { type: Number, required: true },
@@ -35,7 +35,6 @@
         }
     }
 
-    // Генерация видимых страниц с "..." (ellipsis)
     const visiblePages = computed(() => {
         const total = props.totalPages;
         const current = props.currentPage;

@@ -11,6 +11,7 @@
 </script>
 
 <template>
+    <RouterLink class="btn btn-outline-success mb-3" :to="{ name: 'userCreate' }"><i class="fa fa-plus"></i> Новый пользователь</RouterLink>
     <Table>
         <template #thead>
             <tr>
@@ -28,8 +29,7 @@
                 <td>{{ user.lastname }}</td>
                 <td>{{ user.role.name }}</td>
                 <td>
-                    <a href="" class="btn"><i class="fa fa-eye text-success"></i></a>
-                    <a href="" class="btn"><i class="fa fa-edit text-primary"></i></a>
+                    <RouterLink class="btn" :to="{ name: 'userEdit', params: { id: user.id } }"><i class="fa fa-edit text-primary"></i></RouterLink>
                     <a href="" class="btn"><i class="fa fa-trash text-danger"></i></a>
                 </td>
             </tr>
