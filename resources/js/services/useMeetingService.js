@@ -48,11 +48,14 @@ export default function useMeetingService() {
         loading.value = true;
         try {
             const response = await getMeetingsRequest();
-            meetings.value = response.map((meeting) => ({
-                id: meeting.id,
-                name: localStorage.getItem("locale") === "uz" ? meeting?.name_uz : meeting?.name_en,
-                meeting_at: meeting.meeting_at_formatted,
-            }));
+            meetings.value = response
+                .map((meeting) => ({
+                    id: meeting.id,
+                    name: localStorage.getItem("locale") === "uz" ? meeting?.name_uz : meeting?.name_en,
+                    meeting_at: meeting.meeting_at_formatted,
+                    raw_date: new Date(meeting.meeting_at),
+                }))
+                .sort((a, b) => a.raw_date - b.raw_date);
         } catch (e) {
             console.log(e);
         } finally {

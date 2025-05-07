@@ -1,13 +1,15 @@
 <script setup>
     import Loading from "@/components/app/loading.vue";
+    import Toast from "@/components/app/toast.vue";
     import Input from "@/components/ui/input.vue";
     import useUsersService from "@/services/useUsersService";
 
-    const { user, loading, createUser, getErrorMessage } = useUsersService();
+    const { user, loading, successMessage, createUser, getErrorMessage } = useUsersService();
 </script>
 
 <template>
     <Loading v-if="loading" />
+    <Toast v-if="successMessage" :message="successMessage" />
     <RouterLink class="btn btn-outline-secondary" :to="{ name: 'usersList' }"><i class="fa fa-reply"></i> Назад к списку пользователей</RouterLink>
     <div class="d-flex justify-content-center align-items-center">
         <div class="col-5 border p-4">

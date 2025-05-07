@@ -9,12 +9,16 @@ export async function getUsersRequest() {
 
 export async function createUserRequest(payload) {
     const response = await http.post(url, payload);
-    return response.data;
+    if (response.status === 201) {
+        return response.data;
+    }
 }
 
 export async function updateUserRequest(id, payload) {
     const response = await http.put(url + "/" + id, payload);
-    return response.data;
+    if (response.status === 201) {
+        return response.data;
+    }
 }
 
 export async function getUserByIdRequest(id) {

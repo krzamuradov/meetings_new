@@ -1,10 +1,11 @@
 import { createUserRequest, getUserByIdRequest, getUsersRequest, updateUserRequest } from "@/api/users";
 import { useValidate } from "@/services/validator";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 export default function useUsersService() {
     const loading = ref(false);
     const users = ref([]);
+    const successMessage = ref("");
     const user = ref({
         firstname: "",
         lastname: "",
@@ -31,6 +32,7 @@ export default function useUsersService() {
         loading.value = true;
         try {
             const response = await createUserRequest(user.value);
+            successMessage.value = response?.message;
         } catch (e) {
             handleValidationError(e);
             console.log(e);
@@ -40,11 +42,10 @@ export default function useUsersService() {
     };
 
     const updateUser = async (id) => {
-        console.log(id);
-
         loading.value = true;
         try {
             const response = await updateUserRequest(id, user.value);
+            successMessage.value = response?.message;
         } catch (e) {
             handleValidationError(e);
             console.log(e);
@@ -65,10 +66,21 @@ export default function useUsersService() {
         }
     };
 
+    const autoClearMessage = (msgRef, delay = 2000) => {
+        watch(msgRef, (val) => {
+            if (val) {
+                setTimeout(() => (msgRef.value = ""), delay);
+            }
+        });
+    };
+
+    autoClearMessage(successMessage);
+
     return {
         users,
         user,
         loading,
+        successMessage,
         getAllUsers,
         getUserById,
         createUser,

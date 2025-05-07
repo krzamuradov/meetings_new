@@ -23,6 +23,9 @@
         router.push({ name: "meetingShow", params: { id: id } });
     };
 
+    const filterDateCaret = ref(false);
+    console.log(filterDateCaret.value);
+
     onMounted(() => {
         getAllMeetings();
     });
@@ -39,7 +42,9 @@
             <tr>
                 <th class="col-1">#</th>
                 <th class="col-9">{{ $t("meetings.table_cols.name") }}</th>
-                <th class="col-4">{{ $t("meetings.table_cols.meeting_at") }}</th>
+                <th @click="filterDateCaret = !filterDateCaret" class="col-4 hover">
+                    {{ $t("meetings.table_cols.meeting_at") }} <i class="fa fa-caret-up text-danger"></i>
+                </th>
                 <th class="col-1" v-if="can('create-meeting')">{{ $t("meetings.table_cols.action") }}</th>
                 <th class="col-1" v-if="can('create-meeting')">Hujjatlar</th>
             </tr>
