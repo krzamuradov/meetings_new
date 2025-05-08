@@ -16,7 +16,9 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm py-3" style="min-height: 100px">
         <div class="container">
-            <a class="navbar-brand fw-semibold fs-4 text-dark fw-bold" href="/">UZPOST</a>
+            <a class="navbar-brand fw-semibold fs-4 text-dark fw-bold" href="/">
+                <img src="@/assets/logo.png" alt="Logo" width="100" />
+            </a>
             <button
                 class="navbar-toggler"
                 type="button"

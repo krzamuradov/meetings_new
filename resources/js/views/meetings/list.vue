@@ -23,9 +23,6 @@
         router.push({ name: "meetingShow", params: { id: id } });
     };
 
-    const filterDateCaret = ref(false);
-    console.log(filterDateCaret.value);
-
     onMounted(() => {
         getAllMeetings();
     });
