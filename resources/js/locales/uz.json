@@ -1,4 +1,12 @@
 {
+    "404": {
+        "title": "Sahifa topilmadi",
+        "to_home": "Bosh sahifaga qaytish"
+    },
+    "403": {
+        "title": "Ushbu sahifaga kirish uchun huquqlar yetarli emas",
+        "to_home": "Bosh sahifaga qaytish"
+    },
     "login": {
         "block_title": "Tizimga kirish",
         "login": "Login",
@@ -7,25 +15,66 @@
     },
     "navbar": {
         "meetings": "Majlislar",
+        "users": "Foydalanuvchilar",
         "sign_out": "Tizimdan chiqish"
     },
     "meetings": {
-        "new_meeting_btn": "Yangi majlis",
-        "table_cols": {
-            "name": "Nomi",
-            "meeting_at": "Sanasi",
-            "action": "Amal",
-            "link_titles": {
-                "show": "Ko'rish"
+        "list": {
+            "meetings_not_found": "Majlislar topilmadi",
+            "buttons": {
+                "new_meeting": "Yangi majlis",
+                "edit_meeting_title": "Tahrirlash",
+                "new_document_title": "Yangi hujjat qoshish"
+            },
+            "table": {
+                "columns": {
+                    "name": "Nomi",
+                    "meeting_at": "Sanasi",
+                    "actions": "Amallar",
+                    "docs": "Hujjatlar"
+                }
+            }
+        },
+        "show": {
+            "documents_not_found": "Hujjatlar topilmadi",
+            "meeting_name": "Majlis nomi",
+            "meeting_at": "Majlis sanasi",
+            "buttons": {
+                "back_to_list": "Yig'ilishlar ro'yxatiga qaytish",
+                "edit_meeting_title": "Tahrirlash",
+                "new_document_title": "Yangi hujjat qoshish"
+            },
+            "table": {
+                "title": "Hujjatlar ro'yxati",
+                "columns": {
+                    "name": "Hujjat nomi",
+                    "actions": "Amallar"
+                }
+            }
+        },
+        "create": {
+            "title": "Yangi majlis",
+            "inputs": {
+                "name_uz": "O'zbekcha nomi",
+                "name_en": "Inglizcha nomi",
+                "meeting_at": "Majlis sanasi"
+            },
+            "buttons": {
+                "back_to_list": "Yig'ilishlar ro'yxatiga qaytish",
+                "save_btn": "Saqlash"
+            }
+        },
+        "edit": {
+            "title": "Majlisni tahrirlash",
+            "inputs": {
+                "name_uz": "O'zbekcha nomi",
+                "name_en": "Inglizcha nomi",
+                "meeting_at": "Majlis sanasi"
+            },
+            "buttons": {
+                "back_to_list": "Yig'ilishlar ro'yxatiga qaytish",
+                "update_btn": "Yangilash"
             }
         }
-    },
-    "meetings_show": {
-        "back_to_list": "Yig'ilishlar ro'yxatiga qaytish",
-        "meeting_name": "Nomi",
-        "meeting_at": "Sanasi",
-        "list_title": "Hujjatlar ro'yxati",
-        "table_col_name": "Nomi",
-        "table_col_action": "Amal"
     }
 }

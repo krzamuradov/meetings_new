@@ -1,11 +1,12 @@
 <script setup>
+    import BlockScreen from "@/components/app/block-screen.vue";
     import Loading from "@/components/app/loading.vue";
     import Toast from "@/components/app/toast.vue";
     import Input from "@/components/ui/input.vue";
     import Select from "@/components/ui/select.vue";
     import useDocumentsService from "@/services/useDocumentsService";
     import useMeetingService from "@/services/useMeetingService";
-    import { onMounted, ref, watchEffect } from "vue";
+    import { computed, onMounted, ref, watch, watchEffect } from "vue";
     import { useRoute } from "vue-router";
 
     const route = useRoute();
@@ -24,6 +25,7 @@
 </script>
 
 <template>
+    <BlockScreen v-if="!meeting_id" />
     <Toast v-if="successMessage" :message="successMessage" />
     <Loading v-if="documentLoading || meetingLoading" />
     <RouterLink :to="{ name: 'meetingsList' }" class="btn btn-outline-secondary"><i class="fa fa-reply"></i> Назад к списку собрании</RouterLink>

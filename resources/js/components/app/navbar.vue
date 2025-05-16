@@ -34,13 +34,15 @@
             <div class="collapse navbar-collapse justify-content-start" id="navStrict">
                 <ul class="navbar-nav gap-3">
                     <li class="nav-item">
-                        <RouterLink class="nav-link strict-link" :to="{ name: 'meetingsList' }"><i class="fa fa-list"></i> {{ $t("navbar.meetings") }}</RouterLink>
+                        <RouterLink class="nav-link strict-link" :to="{ name: 'meetingsList' }" active-class="active-link">
+                            <i class="fa fa-list"></i> {{ $t("navbar.meetings") }}
+                        </RouterLink>
                     </li>
                 </ul>
                 <ul class="navbar-nav gap-3">
                     <li class="nav-item">
-                        <RouterLink class="nav-link strict-link" :to="{ name: 'usersList' }" v-if="can('users-list')">
-                            <i class="fa fa-users"></i> Пользователи
+                        <RouterLink class="nav-link strict-link" :to="{ name: 'usersList' }" v-if="can('users-list')" active-class="active-link">
+                            <i class="fa fa-users"></i> {{ $t("navbar.users") }}
                         </RouterLink>
                     </li>
                 </ul>
@@ -93,6 +95,14 @@
     }
 
     .strict-link:hover::after {
+        width: 100%;
+    }
+
+    .active-link {
+        color: #0d6efd !important;
+    }
+
+    .active-link::after {
         width: 100%;
     }
 </style>

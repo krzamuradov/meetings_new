@@ -72,6 +72,7 @@ export default function useMeetingService() {
             documents.value = response?.documents.filter((doc) => {
                 return doc.locale === locale;
             });
+
             meeting.value = {
                 ...response,
                 name: locale === "uz" ? response.name_uz : response.name_en,

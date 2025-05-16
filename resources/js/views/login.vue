@@ -3,15 +3,23 @@
     import Toast from "@/components/app/toast.vue";
     import Input from "@/components/ui/input.vue";
     import useAuthService from "@/services/useAuthService";
-    import { ref } from "vue";
+    import { useI18n } from "vue-i18n";
+    import { ref, watch } from "vue";
 
+    const { locale: i18nLocale } = useI18n();
     const { loading, payload, errorMessage, login, getErrorMessage } = useAuthService();
-    const locale = ref(localStorage.getItem("locale"));
 
-    const changeLocale = () => {
-        localStorage.setItem("locale", locale.value);
-        location.reload();
+    const locale = ref(localStorage.getItem("locale") || "uz");
+    i18nLocale.value = locale.value;
+
+    const setLocale = (lang) => {
+        locale.value = lang;
     };
+
+    watch(locale, (val) => {
+        i18nLocale.value = val;
+        localStorage.setItem("locale", val);
+    });
 </script>
 
 <template>
@@ -21,11 +29,10 @@
         <div class="col-4 border p-4">
             <div class="text-center"><img src="@/assets/logo.png" alt="Logo" width="130px" /></div>
             <h3 class="fw-bold text-center">{{ $t("login.block_title") }}</h3>
-            <div class="col-12 mb-3">
-                <select name="" id="" class="form-select" @change="changeLocale" v-model="locale">
-                    <option value="uz">UZ</option>
-                    <option value="en">EN</option>
-                </select>
+            <div class="col-12 mb-3 d-flex justify-content-end">
+                <button class="btn locale-btn" @click="setLocale('uz')"><span class="fi fi-uz"></span>UZ</button>
+                <button class="btn locale-btn" @click="setLocale('ru')"><span class="fi fi-ru"></span>РУ</button>
+                <button class="btn locale-btn" @click="setLocale('en')"><span class="fi fi-us"></span>EN</button>
             </div>
 
             <form class="row g-3" @submit.prevent="login">
@@ -43,4 +50,8 @@
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+    .locale-btn:hover {
+        color: red !important;
+    }
+</style>

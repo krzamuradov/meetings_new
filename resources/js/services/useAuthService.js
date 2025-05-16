@@ -62,9 +62,11 @@ export default function useAuthService() {
     };
 
     const autoClearMessage = (msgRef, delay = 2000) => {
+        let timeout;
         watch(msgRef, (val) => {
             if (val) {
-                setTimeout(() => (msgRef.value = ""), delay);
+                clearTimeout(timeout);
+                timeout = setTimeout(() => (msgRef.value = ""), delay);
             }
         });
     };

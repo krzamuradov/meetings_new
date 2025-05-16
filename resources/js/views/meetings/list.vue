@@ -31,19 +31,19 @@
 <template>
     <Loading v-if="loading" />
     <RouterLink class="btn btn-outline-success rounded-3" :to="{ name: 'meetingCreate' }" v-if="can('create-meeting')">
-        <i class="fa fa-plus"></i> {{ $t("meetings.new_meeting_btn") }}
+        <i class="fa fa-plus"></i> {{ $t("meetings.list.buttons.new_meeting") }}
     </RouterLink>
-    <h4 v-if="!meetings.length" class="text-center text-muted fw-bold">Собраний пока нет</h4>
+    <h4 v-if="!meetings.length" class="text-center text-muted fw-bold">{{ $t("meetings.list.meetings_not_found") }}</h4>
     <table class="table table-striped table-hover align-middle text-center" v-if="meetings.length > 0">
         <thead>
             <tr>
                 <th class="col-1">#</th>
-                <th class="col-9">{{ $t("meetings.table_cols.name") }}</th>
+                <th class="col-9">{{ $t("meetings.list.table.columns.name") }}</th>
                 <th @click="filterDateCaret = !filterDateCaret" class="col-4 hover">
-                    {{ $t("meetings.table_cols.meeting_at") }} <i class="fa fa-caret-up text-danger"></i>
+                    {{ $t("meetings.list.table.columns.meeting_at") }} <i class="fa fa-caret-up text-danger"></i>
                 </th>
-                <th class="col-1" v-if="can('create-meeting')">{{ $t("meetings.table_cols.action") }}</th>
-                <th class="col-1" v-if="can('create-meeting')">Hujjatlar</th>
+                <th class="col-1" v-if="can('create-meeting')">{{ $t("meetings.list.table.columns.actions") }}</th>
+                <th class="col-1" v-if="can('create-meeting')">{{ $t("meetings.list.table.columns.docs") }}</th>
             </tr>
         </thead>
         <tbody>
@@ -52,7 +52,13 @@
                 <td class="col-5">{{ meeting.name }}</td>
                 <td class="col-4">{{ meeting.meeting_at }}</td>
                 <td class="col-2">
-                    <RouterLink @click.stop class="btn" :to="{ name: 'meetingEdit', params: { id: meeting.id } }" title="Редактировать" v-if="can('create-meeting')">
+                    <RouterLink
+                        @click.stop
+                        class="btn"
+                        :to="{ name: 'meetingEdit', params: { id: meeting.id } }"
+                        :title="$t('meetings.list.buttons.edit_meeting_title')"
+                        v-if="can('create-meeting')"
+                    >
                         <i class="fa fa-edit text-primary"></i>
                     </RouterLink>
                 </td>
@@ -61,7 +67,7 @@
                         @click.stop
                         class="btn"
                         :to="{ name: 'documentCreate', query: { meeting_id: meeting.id } }"
-                        title="Добавить документ к собранию"
+                        :title="$t('meetings.list.buttons.new_document_title')"
                         v-if="can('create-meeting')"
                     >
                         <i class="fa fa-plus text-danger"></i>

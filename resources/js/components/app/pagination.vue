@@ -2,7 +2,7 @@
     <nav v-if="totalPages > 1" aria-label="Навигация по страницам">
         <ul class="pagination">
             <li class="page-item" :class="{ disabled: currentPage === 1 }">
-                <button class="page-link" @click="changePage(currentPage - 1)" :disabled="currentPage === 1">Назад</button>
+                <button class="page-link" @click="changePage(currentPage - 1)" :disabled="currentPage === 1"><i class="fa fa-angle-left"></i></button>
             </li>
 
             <li v-for="page in visiblePages" :key="page.key" class="page-item" :class="{ active: page.number === currentPage, disabled: page.isEllipsis }">
@@ -13,7 +13,7 @@
             </li>
 
             <li class="page-item" :class="{ disabled: currentPage === totalPages }">
-                <button class="page-link" @click="changePage(currentPage + 1)" :disabled="currentPage === totalPages">Вперёд</button>
+                <button class="page-link" @click="changePage(currentPage + 1)" :disabled="currentPage === totalPages"><i class="fa fa-angle-right"></i></button>
             </li>
         </ul>
     </nav>
