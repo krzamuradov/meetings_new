@@ -2,9 +2,10 @@
     import Loading from "@/components/app/loading.vue";
     import Toast from "@/components/app/toast.vue";
     import Input from "@/components/ui/input.vue";
+    import Select from "@/components/ui/select.vue";
     import useUsersService from "@/services/useUsersService";
 
-    const { user, loading, successMessage, createUser, getErrorMessage } = useUsersService();
+    const { user, roles, loading, successMessage, createUser, getErrorMessage } = useUsersService();
 </script>
 
 <template>
@@ -26,6 +27,11 @@
                 </div>
                 <div class="col-12">
                     <Input name="password" label="Пароль" :error="getErrorMessage('password')" v-model="user.password" />
+                </div>
+                <div class="col-12">
+                    <Select name="role_id" label="Роль" v-model="user.role_id" :error="getErrorMessage('role_id')">
+                        <option v-for="role in roles" :value="role.id">{{ role.name }}</option>
+                    </Select>
                 </div>
                 <div class="col-12">
                     <button class="btn btn-outline-success form-control" type="submit">Сохранить</button>

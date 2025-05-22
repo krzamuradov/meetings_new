@@ -1,31 +1,83 @@
 {
+    "index": {
+        "title": "Select the required page from the menu"
+    },
+    "404": {
+        "title": "Page not found",
+        "to_home": "Return to homepage"
+    },
+    "403": {
+        "title": "Insufficient permissions to access this page",
+        "to_home": "Return to homepage"
+    },
     "login": {
-        "block_title": "Sign In",
+        "block_title": "Login to the system",
         "login": "Login",
         "password": "Password",
-        "button": "Sign In"
+        "button": "Sign in"
     },
     "navbar": {
         "meetings": "Meetings",
-        "sign_out": "Sign Out"
+        "users": "Users",
+        "sign_out": "Sign out"
     },
     "meetings": {
-        "new_meeting_btn": "New meeting",
-        "table_cols": {
-            "name": "Name",
-            "meeting_at": "Date",
-            "action": "Action",
-            "link_titles": {
-                "show": "Show"
+        "list": {
+            "meetings_not_found": "No meetings found",
+            "buttons": {
+                "new_meeting": "New meeting",
+                "edit_meeting_title": "Edit",
+                "new_document_title": "Add new document"
+            },
+            "table": {
+                "columns": {
+                    "name": "Name",
+                    "meeting_at": "Date",
+                    "actions": "Actions",
+                    "docs": "Documents"
+                }
+            }
+        },
+        "show": {
+            "documents_not_found": "No documents found",
+            "meeting_name": "Meeting name",
+            "meeting_at": "Meeting date",
+            "buttons": {
+                "back_to_list": "Back to meeting list",
+                "edit_meeting_title": "Edit",
+                "new_document_title": "Add new document"
+            },
+            "table": {
+                "title": "Document list",
+                "columns": {
+                    "name": "Document name",
+                    "actions": "Actions"
+                }
+            }
+        },
+        "create": {
+            "title": "New meeting",
+            "inputs": {
+                "name_uz": "Name in Uzbek",
+                "name_en": "Name in English",
+                "meeting_at": "Meeting date"
+            },
+            "buttons": {
+                "back_to_list": "Back to meeting list",
+                "save_btn": "Save"
+            }
+        },
+        "edit": {
+            "title": "Edit meeting",
+            "inputs": {
+                "name_uz": "Name in Uzbek",
+                "name_en": "Name in English",
+                "meeting_at": "Meeting date"
+            },
+            "buttons": {
+                "back_to_list": "Back to meeting list",
+                "update_btn": "Update"
             }
         }
-    },
-    "meetings_show": {
-        "back_to_list": "Back to the meetings list",
-        "meeting_name": "The name of the meeting",
-        "meeting_at": "Date of the meeting",
-        "list_title": "List of documents",
-        "table_col_name": "Name",
-        "table_col_action": "Action"
     }
 }

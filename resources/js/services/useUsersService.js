@@ -6,11 +6,17 @@ export default function useUsersService() {
     const loading = ref(false);
     const users = ref([]);
     const successMessage = ref("");
+    const roles = [
+        { id: 1, name: "Administrator" },
+        { id: 2, name: "Moderator" },
+        { id: 3, name: "User" },
+    ];
     const user = ref({
         firstname: "",
         lastname: "",
         login: "",
         password: "",
+        role_id: 3,
     });
 
     const { getErrorMessage, handleValidationError } = useValidate();
@@ -81,6 +87,7 @@ export default function useUsersService() {
         user,
         loading,
         successMessage,
+        roles,
         getAllUsers,
         getUserById,
         createUser,

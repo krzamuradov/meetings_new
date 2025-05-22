@@ -8,7 +8,7 @@
     <Navbar />
     <div class="container p-4 shadow mt-3">
         <div v-if="route.path === '/'">
-            <h4 class="text-center fw-bold">Выберите страницу из меню</h4>
+            <h4 class="text-center fw-bold">{{ $t("index.title") }}</h4>
         </div>
         <RouterView />
     </div>

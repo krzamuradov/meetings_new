@@ -21,28 +21,6 @@ class DatabaseSeeder extends Seeder
             'role_id' => 1
         ]);
 
-        User::factory()->create([
-            'firstname' => 'Moderator',
-            'lastname' => 'Moderatorov',
-            'login' => 'moderator',
-            'role_id' => 2
-        ]);
-
-        User::factory()->create([
-            'firstname' => 'User',
-            'lastname' => 'Userov',
-            'login' => 'user',
-            'role_id' => 3
-        ]);
-
-        User::factory()->create([
-            'firstname' => 'Alisher',
-            'lastname' => 'Fayzullayev',
-            'login' => 'a.fayzullayev',
-            'role_id' => 3
-        ]);
-
-
         $this->call(MeetingsSeeder::class);
     }
 }

@@ -1,4 +1,7 @@
 {
+    "index": {
+        "title": "Menudan kerakli sahifani tanlang"
+    },
     "404": {
         "title": "Sahifa topilmadi",
         "to_home": "Bosh sahifaga qaytish"

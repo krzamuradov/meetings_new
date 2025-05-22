@@ -58,6 +58,7 @@
                         <select name="locale" id="locale" class="nav-link" v-model="locale" @change="changeLocale">
                             <option value="uz">UZ</option>
                             <option value="en">EN</option>
+                            <option value="ru">РУ</option>
                         </select>
                     </li>
                 </ul>

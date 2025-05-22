@@ -26,7 +26,7 @@ class StoreUserRequest extends FormRequest
             "lastname" => ["required"],
             "login" => ["required", "unique:users,login"],
             "password" => ["required"],
-            "role_id" => ["sometimes"],
+            "role_id" => ["required"],
         ];
     }
 }
