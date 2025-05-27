@@ -1,4 +1,4 @@
-import { createDocumentRequest } from "@/api/document";
+import { createDocumentRequest, getDocumentByIdRequest, updateDocumentRequest, deleteDocumentRequest } from "@/api/document";
 import useMeetingService from "@/services/useMeetingService";
 import { useValidate } from "@/services/validator";
 import { computed, onMounted, ref, watch, watchEffect } from "vue";
@@ -12,6 +12,7 @@ export default function useDocumentsService(getMeetingById) {
         meeting_id: null,
         name: "",
         locale: "",
+        position: 1,
         file: null,
     });
 
@@ -41,6 +42,54 @@ export default function useDocumentsService(getMeetingById) {
         }
     };
 
+    const updateDocument = async (document_id, event) => {
+        loading.value = true;
+        try {
+            const response = await updateDocumentRequest(document_id, document.value);
+            // successMessage.value = response?.message;
+            // document.value = {
+            //     name: "",
+            //     locale: "",
+            //     position: 1,
+            //     file: null,
+            // };
+            // event.target.elements.file.value = null;
+        } catch (e) {
+            handleValidationError(e);
+            console.log(e);
+        } finally {
+            loading.value = false;
+        }
+    };
+
+    const deleteDocument = async (document_id, meeting_id) => {
+        loading.value = true;
+
+        try {
+            await deleteDocumentRequest(document_id);
+            await getMeetingById(meeting_id);
+        } catch (e) {
+            console.log(e);
+        } finally {
+            loading.value = false;
+        }
+    };
+
+    const getDocumentById = async (id) => {
+        try {
+            const response = await getDocumentByIdRequest(id);
+
+            document.value = {
+                name: response?.name,
+                locale: response?.locale,
+                position: response?.position,
+                file: null,
+            };
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
     const autoClearMessage = (msgRef, delay = 2000) => {
         watch(msgRef, (val) => {
             if (val) {
@@ -56,6 +105,9 @@ export default function useDocumentsService(getMeetingById) {
         loading,
         successMessage,
         createDocument,
+        updateDocument,
+        deleteDocument,
+        getDocumentById,
         fileChange,
         getErrorMessage,
     };

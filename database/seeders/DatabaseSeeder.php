@@ -21,6 +21,6 @@ class DatabaseSeeder extends Seeder
             'role_id' => 1
         ]);
 
-        $this->call(MeetingsSeeder::class);
+        // $this->call(MeetingsSeeder::class);
     }
 }

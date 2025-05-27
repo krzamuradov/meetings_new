@@ -21,7 +21,6 @@ class MeetingResource extends JsonResource
             "name_en" => $this->name_en,
             "meeting_at" => $this->meeting_at,
             "meeting_at_formatted" => Carbon::parse($this->meeting_at)->format('d.m.Y'),
-            // "documents" => DocumentResource::collection($this->documents)
             "documents" => $this->documents
         ];
     }

@@ -13,10 +13,16 @@
     const meeting_id = route.query.meeting_id;
 
     const { meeting, loading: meetingLoading, getMeetingById } = useMeetingService();
-    const { document, loading: documentLoading, successMessage, fileChange, createDocument, getErrorMessage } = useDocumentsService(getMeetingById);
+    const { document, loading: documentLoading, successMessage, fileChange, createDocument, deleteDocument, getErrorMessage } = useDocumentsService(getMeetingById);
 
     const handleSubmit = async (event) => {
         await createDocument(event, meeting_id);
+    };
+
+    const handleDelete = (document_id) => {
+        if (confirm("Вы уверены, что хотите удалить файл?")) {
+            deleteDocument(document_id, meeting_id);
+        }
     };
 
     onMounted(async () => {
@@ -49,6 +55,11 @@
                 </Select>
             </div>
             <div class="col-12">
+                <Select name="position" label="Порядковый номер" v-model="document.position" :error="getErrorMessage('position')">
+                    <option v-for="i in 20" :value="i" :key="i">{{ i }}</option>
+                </Select>
+            </div>
+            <div class="col-12">
                 <Input type="file" name="file" label="Файл" @change="fileChange" :error="getErrorMessage('file')" />
             </div>
             <div class="col-12">
@@ -60,7 +71,7 @@
     <table class="table table-striped table-hover align-middle text-center">
         <thead>
             <tr>
-                <th class="col-1">#</th>
+                <th class="col-1">Позиция</th>
                 <th class="col-5">Название</th>
                 <th class="col-4">Язык</th>
                 <th class="col-2">Действие</th>
@@ -68,13 +79,14 @@
         </thead>
         <tbody>
             <tr v-for="(document, i) in meeting.documents" :key="document.id">
-                <td class="col-1">{{ i + 1 }}</td>
+                <td class="col-1">{{ document.position }}</td>
                 <td class="col-5">{{ document.name }}</td>
                 <td class="col-4">{{ document.locale }}</td>
                 <td class="col-2">
-                    <RouterLink class="btn" :to="{ name: 'documentEdit', params: { id: meeting.id } }" title="Редактировать">
+                    <RouterLink class="btn" :to="{ name: 'documentEdit', params: { id: document.id } }" title="Редактировать">
                         <i class="fa fa-edit text-primary"></i>
                     </RouterLink>
+                    <button class="btn" @click="handleDelete(document.id)"><i class="fa fa-trash text-danger"></i></button>
                 </td>
             </tr>
         </tbody>

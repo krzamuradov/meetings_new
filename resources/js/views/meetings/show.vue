@@ -2,12 +2,34 @@
     import Loading from "@/components/app/loading.vue";
     import useMeetingService from "@/services/useMeetingService";
     import { onMounted, ref } from "vue";
-    import { useRoute } from "vue-router";
+    import { useRoute, useRouter } from "vue-router";
 
+    const router = useRouter();
     const route = useRoute();
     const meeting_id = route.params.id;
 
     const { loading, getMeetingById, meeting, documents } = useMeetingService();
+
+    const VIEWER_ROUTES = {
+        docx: "docxViewer",
+        pdf: "pdfViewer",
+    };
+
+    const redirectToShow = (document) => {
+        if (!document || !document.extension || !document.url) {
+            console.error("Некорректный документ:", document);
+            return;
+        }
+
+        const ext = document.extension.toLowerCase();
+        const routeName = VIEWER_ROUTES[ext];
+
+        if (routeName) {
+            router.push({ name: routeName, query: { url: document.url } });
+        } else {
+            window.open(document.url, "_blank");
+        }
+    };
 
     onMounted(async () => {
         await getMeetingById(meeting_id);
@@ -38,11 +60,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(document, i) in documents" :key="document.id">
+                <tr v-for="(document, i) in documents" :key="document.id" @click="redirectToShow(document)" class="clickable" title="korish">
                     <td class="col-1">{{ i + 1 }}</td>
                     <td class="col-5">{{ document.name }}</td>
                     <td class="col-2">
-                        <a :href="document?.url" target="_blank" class="btn">
+                        <a @click.stop="" :href="document?.url" target="_blank" class="btn" rel="noopener noreferrer" title="Yuklab olish">
                             <i class="fa fa-download text-primary"></i>
                         </a>
                     </td>
@@ -52,4 +74,8 @@
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+    .clickable {
+        cursor: pointer;
+    }
+</style>

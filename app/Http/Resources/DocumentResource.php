@@ -17,6 +17,7 @@ class DocumentResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
+            "position" => $this->position,
             "locale" => $this->locale === "uz" ? "O'zbekcha" : "English",
             "url" => $this->url
         ];

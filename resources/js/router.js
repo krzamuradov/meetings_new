@@ -99,6 +99,16 @@ const routes = [
                     },
                 ],
             },
+            {
+                path: "docx",
+                name: "docxViewer",
+                component: () => import("@/components/app/DocxViewer.vue"),
+            },
+            {
+                path: "pdf",
+                name: "pdfViewer",
+                component: () => import("@/components/app/PdfViewer.vue"),
+            },
         ],
     },
     {

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class DocumentStore extends FormRequest
 {
@@ -25,6 +26,12 @@ class DocumentStore extends FormRequest
             "meeting_id" => ["required"],
             "name" => ["required"],
             "locale" => ["required"],
+            "position" => [
+                "required",
+                Rule::unique('documents')->where(function ($query) {
+                    return $query->where('meeting_id', $this->meeting_id);
+                }),
+            ],
             "file" => ["required", "file"],
         ];
     }

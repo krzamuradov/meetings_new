@@ -69,9 +69,11 @@ export default function useMeetingService() {
         try {
             const response = await getMeetingByIdRequest(id);
 
-            documents.value = response?.documents.filter((doc) => {
-                return doc.locale === locale;
-            });
+            documents.value = response?.documents
+                .filter((doc) => {
+                    return doc.locale === locale;
+                })
+                .sort((a, b) => (a.position ?? Infinity) - (b.position ?? Infinity));
 
             meeting.value = {
                 ...response,
